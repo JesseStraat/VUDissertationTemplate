@@ -1,0 +1,168 @@
+%% This preamble is split from preamble.sty
+%% to allow it being used in, for example,
+%% a beamer presentation
+
+%% Base packages %%
+\RequirePackage[
+	plainpages = 	false,
+	pdfpagelabels,
+	citecolor = 	blue
+	]{hyperref}						% Hyperlinks
+\usepackage{xcolor}								% Helps with colour definitions
+\usepackage[english]{babel}				        % Language-related things
+\usepackage{csquotes}
+\usepackage{graphicx}							% Adding images
+\usepackage{caption}							% Used primarily for subfigures
+\usepackage{subcaption}							% Ditto
+\usepackage{amsmath}							% Some mathematical symbols
+\usepackage{amsfonts}							% Ditto
+\usepackage{amssymb}							% Ditto
+\usepackage{mathrsfs}							% Mathscr symbols
+\usepackage{mathtools}							% More mathematical symbols, e.g., for proofs
+\usepackage{wasysym}							% Ditto
+\usepackage{amsthm}								% Theorem environments (for proofs)
+\usepackage{thmtools}							% Some tools for defining theorems
+\usepackage{textcomp}							% Text symbols
+\usepackage{comment}							% Allows a comment environment for multi-line comments
+\usepackage{tabularx}							% Allows prettier tabular environments
+
+
+%% QOL improvements %%
+
+% Swapping \epsilon and \varepsilon %
+\let\temp\epsilon
+\let\epsilon\varepsilon
+\let\varepsilon\temp
+
+% Swapping \phi and \varphi%
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+% Adding \vu as alternative to \nu (for people who actually speak Greek)
+\let\vu\nu
+
+% Some sets %
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\id}{\operatorname{id}}
+
+
+%% Macros %%
+\NewDocumentCommand{\numberthis}{}{
+	\addtocounter{equation}{1}\tag{\theequation}
+}
+
+
+%% Theorems %%
+\@ifclassloaded{beamer}{}{		%Beamer already loads these environments
+	
+	% Redefine hyperref anchors of theorems to include chapter %
+	% This is a known bug of thmtools: https://github.com/muzimuzhi/thmtools/issues/70
+	% If this has been fixed, simply remove this line
+	\g@addto@macro\thmt@newtheorem@postdefinition{%
+		\ifthmt@isstarred\relax\else%
+			\expandafter\renewcommand\csname theH\thmt@envname\endcsname{\thechapter.\arabic{\thmt@envname}}%
+		\fi%
+	}
+	
+	\declaretheoremstyle[bodyfont=\slshape]{normalsl}
+	\theoremstyle{normalsl}
+
+	\newtheorem{proposition}{Proposition}[chapter]
+	\newtheorem*{proposition*}{Proposition}
+	
+	\newtheorem{lemma}[proposition]{Lemma}
+	\newtheorem*{lemma*}{Lemma}
+	
+	\newtheorem{theorem}[proposition]{Theorem}
+	\newtheorem*{theorem*}{Theorem}
+	
+	\newtheorem{claim}[proposition]{Claim}
+	\newtheorem*{claim*}{Claim}
+	
+	\newtheorem{corollary}[proposition]{Corollary}
+	\newtheorem*{corollary*}{Corollary}
+	
+	\theoremstyle{definition}
+
+	\newtheorem{definition}[proposition]{Definition}
+	\newtheorem*{definition*}{Definition}
+
+	\theoremstyle{remark}
+
+	\newtheorem{remark}[proposition]{Remark}
+	\newtheorem*{remark*}{Remark}
+
+	\newtheorem{example}[proposition]{Example}
+	\newtheorem*{example*}{Example}
+
+	% Add boxes around some environments %
+
+	% Ideally, each of the below tcolorboxes would have the option parbox=false. Sadly, due to a bug, this is incompatible
+	% with hyperref. If this is ever fixed in the future, add the option back
+	
+	\usepackage{tcolorbox}                           % Makes boxes around definitions
+	\tcbuselibrary{breakable}
+	\let\DefOrig\definition
+	\let\endDefOrig\enddefinition
+	\newif\ifindefinition
+	\renewenvironment{definition}
+	{%	
+		\indefinitiontrue
+		\begin{tcolorbox}[breakable,colback=gray!15,sharp corners,boxrule=0pt,opacityframe=0]
+		\DefOrig
+	}
+	{%
+		\endDefOrig
+		\end{tcolorbox}
+		\indefinitionfalse
+	}%
+	\let\ThmOrig\theorem
+	\let\endThmOrig\endtheorem
+	\renewenvironment{theorem}
+	{%
+		\begin{tcolorbox}[breakable,colback=gray!30,sharp corners,boxrule=0pt,opacityframe=0]
+		\ThmOrig
+	}
+	{%
+		\endThmOrig
+		\end{tcolorbox}
+	}%
+	\let\PropOrig\proposition
+	\let\endPropOrig\endproposition
+	\renewenvironment{proposition}
+	{%
+		\begin{tcolorbox}[breakable,colback=gray!30,sharp corners,boxrule=0pt,opacityframe=0]
+		\PropOrig
+	}
+	{%
+		\endPropOrig
+		\end{tcolorbox}
+	}%
+}
+
+
+%% Bibliography %%
+\usepackage[natbib = true,
+		style = alphabetic,
+		sorting = nty,
+		url=false,
+		giveninits=true,
+		maxbibnames=5,
+		urldate=iso,
+		seconds=true,
+		%date=iso
+		]{biblatex}
+\DeclareNameAlias{default}{family-given}
+\addbibresource{../scripts/references.bib}
+
+
+
+%% ADD YOUR OWN CODE HERE %%

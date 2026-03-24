@@ -1,0 +1,45 @@
+% Copyright (c) 2023 Jesse Straat
+% 
+% This software is released under the MIT License.
+% https://opensource.org/licenses/MIT
+
+%!TeX root = introduction
+
+\makeatletter
+\def\input@path{{../}}
+\makeatother
+\documentclass{scripts/preamble}
+
+\begin{document}
+	\chapter*{Introduction\markboth{Introduction}{}}
+	\addcontentsline{toc}{chapter}{\protect\numberline{}Introduction}		% Makes sure that the introduction has no number but is in table of contents
+	This is an introductory story.
+	%
+	\clearpage
+	%
+	\subsection*{Organisation}
+	Here's what each chapter is going to be about.
+	%
+	\subsection*{Preliminaries}
+	You should know Category Theory for this thesis\cite{rudin_principles_1976}.
+	%
+	\subsection*{Notation and conventions}
+	Here, I introduce my conventions.
+    %
+	\subsubsection*{A summary of mathematical notation}
+    Here is a table of mathematical notation that will be used in this thesis.\\
+	{\renewcommand\tabularxcolumn[1]{m{#1}}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabularx}{\textwidth}{ c X }
+		\(\qed\) & This symbol denotes the end of a proof.
+	\end{tabularx}}
+	%
+	\subsection*{Acknowledgements}
+	I would like to thank myself for making this template. My cat deserves praise for being cute.
+	\repthm{thm:stest}
+	\begin{makethm}{theorem}{thm:stest}[a]
+		TEST\\TEST\par TEST
+	\end{makethm}
+	\repthm{thm:sstest}
+	\repthm{thm:ssstest}[Remove this alt text for a fun warning]
+\end{document}

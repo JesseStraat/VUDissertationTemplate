@@ -1,0 +1,67 @@
+% Copyright (c) 2023 Jesse Straat
+% 
+% This software is released under the MIT License.
+% https://opensource.org/licenses/MIT
+
+\makeatletter
+\def\input@path{{../}}
+\makeatother
+\documentclass{scripts/preamble}
+
+\usepackage{docmute}
+
+
+
+% different page numberings
+\newcommand\frontmatter{%
+    \cleardoublepage
+    \pagenumbering{roman}}% Lowercase Roman numbers
+
+\newcommand\mainmatter{%
+    \cleardoublepage
+    \pagenumbering{arabic}}% Normal numbers
+
+\newcommand\backmatter{%
+    \cleardoublepage
+    \pagenumbering{Roman}% Capital Roman numbers
+    \pagestyle{plain}}
+
+
+% If you want an index:
+% \makeindex[intoc]
+
+% Saving theorems to a file
+\theoremfile
+
+\begin{document}
+\pagenumbering{alph}% We don't want the title page to be page 1
+\input{subfiles/titlepage}
+%
+\frontmatter % We want lowercase roman numerals here. 
+%
+\input{subfiles/abstract} % Abstract
+%
+\clearpage % Contents on next page
+\setcounter{tocdepth}{2} % Change integer to desired number of columns in table of contens
+\tableofcontents % Generates the table of contents
+%
+\mainmatter % We want normal pagenumbers from now on
+%
+\input{subfiles/introduction}
+%
+\input{subfiles/chapter1}
+%
+% For new chapters, use 
+% \clearpage
+% \input{subfiles/chapter}
+%
+\backmatter % Capital romans from here on
+%
+\DeclareFieldFormat{url}{\linebreak\url{#1}} % Fixes urls in bibliography
+\printbibliography[heading=bibintoc]
+%
+% If you want an index:
+% \clearpage
+% \printindex
+\end{document}
+
