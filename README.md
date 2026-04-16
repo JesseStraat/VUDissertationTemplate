@@ -94,6 +94,8 @@ This template can optionally be set up to be compliant with PDF/UA-2, the access
 
 One of the most obvious changes from enabling accessibility options is that the default `hyperref` colours will change. The new colours are easier to see for colourblind people. See [the hyperref-generic documentation](https://mirrors.mit.edu/CTAN/macros/latex/contrib/pdfmanagement-testphase/hyperref-generic.pdf#subsection.0.7.2) for more information. It also describes how to revert to legacy colours if preferred.
 
+When using accessibility mode, there are some clashes between `mathtools` and `unicode-math`. This results in some macros being defined as in `mathtools` and others as in `unicode-math`. I have disabled the warning that it produces (since it's working completely as intended). More information can be found in [this StackExchange thread](https://tex.stackexchange.com/questions/660012/warning-when-unicode-math-and-mathtools-are-loaded).
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
