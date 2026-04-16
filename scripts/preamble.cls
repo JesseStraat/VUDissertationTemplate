@@ -11,7 +11,7 @@
 
 \RequirePackage{scripts/metadata}
 \RequirePackage[ocgcolorlinks]{ocgx2}			% This ensures hyperlinks aren't printed (ocgcolorlinks), while still being able to cover multiple lines (as opposed to ocgcolorlinks in hyperref)
-\usepackage[papersize={17cm,24cm},margin=2.5cm]{geometry}		% Change the shape of a page (custom margins etc.)
+\usepackage[papersize={17cm,24cm},margin=2.2cm,inner=2.69cm]{geometry}		% Change the shape of a page (custom margins etc.)
 
 \usepackage{fancyhdr}							% Nicer layout
 \usepackage{epigraph}							% For chapter quotes

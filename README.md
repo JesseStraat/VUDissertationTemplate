@@ -82,6 +82,16 @@ The file containing all theorems is only updated when `thesis.tex` is run, so ma
 
 For more information, see https://ctan.org/pkg/reptheorem.
 
+## Page and font size, margins
+
+The page size is set to 17x24 cm. This standard has no official name (though often referred to as B5, which in reality is slightly larger), but is used for all Dutch PhD dissertations. The font size is set to 12pt, since it's the font size generally recommended for accessibility reasons.
+
+Most PhD dissertations (which I've seen) are typeset at 11pt or 12pt, but in A4 size. When the thesis is then printed, the entire page is shrunk down. This leads to an effective font size of around 9pt to 10pt. You can see this from the fact that most PhD thesis can contain about 45 lines of text on a single page, whereas this template can only take 38.
+
+If you want your text to be smaller, change the fontsize in `preamble.cls` to 10pt, or use a package to crank it down to 9pt. I strongly advise against setting the page size to A4 to force the font size, since this will decrease the control you have over the layout of your page.
+
+The default margins (in `preamble.cls`) are set to 2 cm, with an extra 0.69 cm on the inner margin (for binding reasons). Be sure to discuss these values with your printer; my values only approximate general advice, and I chose them specifically such that `\textheight/\textwidth` is the golden ratio (maybe it'll bring you luck!). So unless you value following in Gutenberg's biblical footsteps, please ask the professionals what these values should be.
+
 ## Metadata
 
 This template uses `hyperxmp` to set the metadata of your document. You can find and set the metadata under `scripts/metadata.sty`.
