@@ -1,11 +1,7 @@
-% Copyright (c) 2023 Jesse Straat
-% 
-% This software is released under the MIT License.
-% https://opensource.org/licenses/MIT
-
 \makeatletter
 \def\input@path{{../}}
 \makeatother
+\input{scripts/accessibility.sty}
 \documentclass{scripts/preamble}
 
 \usepackage{docmute}
@@ -28,21 +24,23 @@
 
 
 % If you want an index:
-% \makeindex[intoc]
+\makeindex[intoc]
+\makeindex[name=notation,title=List of symbols,intoc]
 
 % Saving theorems to a file
 \theoremfile
 
 \begin{document}
-\pagenumbering{alph}% We don't want the title page to be page 1
-\input{subfiles/titlepage}
+% Optional cover page
+% \pagenumbering{alph}% We don't want the title page to be page 1
+% \input{subfiles/titlepage}
 %
 \frontmatter % We want lowercase roman numerals here. 
 %
 \input{subfiles/abstract} % Abstract
 %
 \clearpage % Contents on next page
-\setcounter{tocdepth}{2} % Change integer to desired number of columns in table of contens
+\setcounter{tocdepth}{2} % Change integer to desired level of allowed subsections in the table of contents
 \tableofcontents % Generates the table of contents
 %
 \mainmatter % We want normal pagenumbers from now on
@@ -51,17 +49,18 @@
 %
 \input{subfiles/chapter1}
 %
-% For new chapters, use 
-% \clearpage
+% For new chapters, use
 % \input{subfiles/chapter}
 %
-\backmatter % Capital romans from here on
+% \backmatter % Use this for capital Roman page numbers
 %
 \DeclareFieldFormat{url}{\linebreak\url{#1}} % Fixes urls in bibliography
 \printbibliography[heading=bibintoc]
 %
-% If you want an index:
-% \clearpage
-% \printindex
+% Index
+\clearpage
+\printindex[notation]
+\clearpage
+\printindex
 \end{document}
 

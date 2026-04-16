@@ -3,22 +3,14 @@
 %% a beamer presentation
 
 %% Base packages %%
-\RequirePackage[
-	plainpages = 	false,
-	pdfpagelabels,
-	citecolor = 	blue
-	]{hyperref}						% Hyperlinks
 \usepackage{xcolor}								% Helps with colour definitions
 \usepackage[english]{babel}				        % Language-related things
 \usepackage{csquotes}
 \usepackage{graphicx}							% Adding images
 \usepackage{caption}							% Used primarily for subfigures
 \usepackage{subcaption}							% Ditto
-\usepackage{amsmath}							% Some mathematical symbols
-\usepackage{amsfonts}							% Ditto
-\usepackage{amssymb}							% Ditto
-\usepackage{mathrsfs}							% Mathscr symbols
-\usepackage{mathtools}							% More mathematical symbols, e.g., for proofs
+\usepackage{amsmath}							% Math environments
+% Mathematical fonts (e.g., amsfonts) are imported in accessibility.sty
 \usepackage{wasysym}							% Ditto
 \usepackage{amsthm}								% Theorem environments (for proofs)
 \usepackage{thmtools}							% Some tools for defining theorems
@@ -34,24 +26,12 @@
 \let\epsilon\varepsilon
 \let\varepsilon\temp
 
-% Swapping \phi and \varphi%
-\let\temp\phi
-\let\phi\varphi
-\let\varphi\temp
-
-% Adding \vu as alternative to \nu (for people who actually speak Greek)
-\let\vu\nu
-
 % Some sets %
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
-\newcommand{\K}{\mathbb{K}}
-\newcommand{\bP}{\mathbb{P}}
-\newcommand{\Id}{\operatorname{Id}}
-\newcommand{\id}{\operatorname{id}}
 
 
 %% Macros %%

@@ -1,18 +1,21 @@
-% Copyright (c) 2023 Jesse Straat
-% 
-% This software is released under the MIT License.
-% https://opensource.org/licenses/MIT
-
 %!TeX root = chapter1
 
+\csname docmute\endcsname
 \makeatletter
 \def\input@path{{../}}
 \makeatother
+\input{scripts/accessibility.sty}
 \documentclass{scripts/preamble}
 
 \begin{document}
-    \chapter{Category Theory}\label{sec:simps}
+    \chapter{Category Theory}\label{chap:cattheory}
     \epigraph{A monad is just a monoid in the category of endofunctors, what's the problem?}{James Iry}
+    
+    \noindent
+    %
     A monad is a monoid in the category of endofunctors.
-    \makethm{theorem}{thm:sstest}[Yoneda Lemma]{Everything that I claim is true.}
+    \begin{makethm}{theorem}{thm:sstest}[Yoneda Lemma]
+        Everything that I claim is true.
+    \end{makethm}
+    bvkakbkaba
 \end{document}

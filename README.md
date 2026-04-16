@@ -1,18 +1,62 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-# Thesis Template
+# VU Dissertation Template
 
-This template for large LaTeX projects is perfect for theses. It is developed with Utrecht University in mind.
-
+This template for large LaTeX projects is perfect for PhD dissertations. It is developed with the Vrije Universiteit Amsterdam in mind.
 
 ## Installation
 
 Press 'use this template' to start using the template in your own repository. All dependencies are on CTAN, and are included in modern distributions of MiKTeX and TeX Live.
 
+## Setup
+
+This template consists of four parts, split into four folders. I will explain each part in this section.
+
+The general idea is that the dissertation is split up in several subdocuments. The benefit of doing this is that compilation of each chapter will be much faster than compiling the document every time you want to look at the output. To this end, we use the `docmute` package.
+
+### Main
+
+This folder only contains `thesis.tex`, which is the final complete thesis. Its only purpose is to combine the chapters (and bibliography, index, table of contents, etc.) into one final product; no actual content exists within the file. In most cases, you shouldn't put any other files here.
+
+### Subfiles
+
+These are the individual chapters of the dissertation. If you want to add a chapter, just duplicate another chapter, and change `%!TeX root = [filename]` to reflect the new file. Then import the file in `thesis.tex` through `\input{subfiles/filename}`. It is very important to NEVER change the preamble of the subfiles, so beyond the TeX root, you should only change the document body.
+
+
+### Scripts
+
+In this folder, we have everything technical that is included in the document. Most importantly, we have the preamble files. More information about these can be found in [the preamble section](#preamble). The takeaway should be that any changes to the preamble should be done HERE, not in the `.tex` files.
+
+This folder also contains the [bibliography](#bibliography), [metadata](#metadata) and [accessibility](#accessibility) files. One may alter these to fit your usage case.
+
+### Images
+
+Here you can put all your images to be included in the document.
+
+## Compilation
+
+I advise compiling the files using the following recipe:
+```
+(lualatex -> biber ->) lualatex -> lualatex
+```
+The first part is only necessary for compiling the bibliography.
+
 ## Preamble
 
-The template has two preamble files, `globalpreamble.sty` and `preamble.cls`. `globalpreamble.sty` should be used for macros and packages that do not interact with the visuals of a document, such so it can be used for non-thesis documents, such as a `beamer` presentation, in the future. `preamble.cls` defines the document class used by all thesis documents, and anything put in here will NOT be included in other documents.
+The template has two preamble files, `scripts/globalpreamble.sty` and `scripts/preamble.cls`. `globalpreamble.sty` should be used for macros and packages that do not interact with the visuals of a document, such that it can be used for non-thesis documents, such as a `beamer` presentation. `preamble.cls` defines the document class used by all thesis documents, and anything put in here should NOT be included in other documents.
 
 You can add your own packages and macros to the preambles (in fact, it is encouraged) by adding it to the bottom of these files. Do NOT edit the preamble of subfiles, to make sure all documents share the same preamble.
+
+## Bibliography
+
+The bibliography is made using `biblatex`, not `natbib`. Therefore, one should use `biber` instead of `bibtex`.
+
+The bibliography file can be found at `scripts/references.bib`.
+
+## Index
+
+By default, this template produces two indices. One for notation (which should list entries such as $H^\bullet(X;\mathbb{Z})$), and another for general terms (such as "Singular cohomology"). To add an entry to the index, use `\index[notation]{\(H^\bullet(X;\mathbb{Z})\)}` or `\index{Singular cohomology}`. More information about index syntaxing can be found in section 2.2 of the [makeindex documentation](https://nl.mirrors.cicku.me/ctan/indexing/makeindex/doc/makeindex.pdf), or on the [WikiBooks article on the subject](https://en.wikibooks.org/wiki/LaTeX/Indexing#Sophisticated_indexing).
+
+I advise using the index for dissertations, since a reader may go through them nonlinearly, or forget about a term/notation last used two chapters ago. The index helps in these cases. Indices can be disabled in `main.tex` by commenting out the `\printindex` macros at the bottom. =
 
 ## `reptheorem`
 
@@ -40,16 +84,17 @@ For more information, see https://ctan.org/pkg/reptheorem.
 
 ## Metadata
 
-This template uses `hyperxmp` to set the metadata of your document. You can find and set the metadata under `metadata.sty`.
+This template uses `hyperxmp` to set the metadata of your document. You can find and set the metadata under `scripts/metadata.sty`.
 
 For more information, see https://ctan.org/pkg/hyperxmp.
 
-## Logos
+## Accessibility
 
-I do not own the Utrecht University logo, nor can I give anyone permission to use it. For more information, see [here](https://www.uu.nl/en/organisation/corporate-identity/guidelines/logo)
+This template can optionally be set up to be compliant with PDF/UA-2, the accessibility standard for PDFs. Please refer to the [LaTeX tagging project](https://latex3.github.io/tagging-project/documentation/usage-instructions) for more informtaion. Specifically, one should remember to tag figures, tables, and lists, and that there may be some incompatibilities with packages. Moreover, using LuaLaTeX is highly advised due for compatibility reasons. Tagging is disabled by default. One may enable it by changing `\def\@ccessibility{f}` to `\def\@ccessibility{t}` in `accessibility.sty`.
+
+One of the most obvious changes from enabling accessibility options is that the default `hyperref` colours will change. The new colours are easier to see for colourblind people. See [the hyperref-generic documentation](https://mirrors.mit.edu/CTAN/macros/latex/contrib/pdfmanagement-testphase/hyperref-generic.pdf#subsection.0.7.2) for more information. It also describes how to revert to legacy colours if preferred.
 
 ## License
 
-For everything besides the UU logo:
 [MIT](https://choosealicense.com/licenses/mit/)
 

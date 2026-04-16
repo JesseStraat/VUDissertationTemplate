@@ -1,0 +1,24 @@
+% Here, we import some font packages and set up accessibility options
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\makeatletter
+\def\@ccessibility{f}                           % Set to "t" for true or "f" for false to enable/disable accessibility (see ReadMe)
+\if t\@ccessibility
+    \DocumentMetadata{
+        lang        = en,
+        pdfstandard = ua-2,
+        pdfstandard = a-4f,
+        tagging=on,
+        tagging-setup={math/setup=mathml-SE}
+    }
+    \RequirePackage{unicode-math}
+    % An incompatibility between tagging and ocgx2 requires the following workaround
+    % If solved in the future, the following three lines should be removed
+    % See https://github.com/latex3/tagging-project/issues/1314
+    \RemoveFromHook{contentsline/number/before}[tagpdf]
+    \RemoveFromHook{contentsline/number/after}[tagpdf]
+    \AddToHook{contentsline/number/after}{\pdffakespace}
+\else
+    \RequirePackage{amsfonts,mathrsfs}
+\fi
+\makeatother

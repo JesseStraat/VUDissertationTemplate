@@ -4,9 +4,14 @@
 \usepackage{scripts/globalpreamble}
 \usepackage{reptheorem}							% Theorem replication
 
+\RequirePackage[
+	plainpages = 	false,
+	pdfpagelabels,
+	]{hyperref}						% Hyperlinks
+
 \RequirePackage{scripts/metadata}
 \RequirePackage[ocgcolorlinks]{ocgx2}			% This ensures hyperlinks aren't printed (ocgcolorlinks), while still being able to cover multiple lines (as opposed to ocgcolorlinks in hyperref)
-\usepackage[a4paper,margin=2.5cm]{geometry}		% Change the shape of a page (custom margins etc.)
+\usepackage[papersize={17cm,24cm},margin=2.5cm]{geometry}		% Change the shape of a page (custom margins etc.)
 
 \usepackage{fancyhdr}							% Nicer layout
 \usepackage{epigraph}							% For chapter quotes
@@ -37,10 +42,10 @@
 % Actual headers and footers %
 \pagestyle{fancy}% use fancyheaders with the bar on the top
 \fancyhf{} % Clear the normal style
-\fancyhead[RE]{\bfseries\leftmark} % this places the section number and name in the top left
+\fancyhead[RE]{\nouppercase{\bfseries\leftmark}} % this places the section number and name in the top left
 \fancyhead[RO,LE]{\bfseries\thepage} % page number
 % Changing headheight to fit what's inside %
-\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[LO]{\nouppercase{\bfseries\rightmark}}
 \setlength{\headheight}{24pt}
 \fancypagestyle{plain}{}
 

@@ -19,3 +19,4 @@
 *.synctex(busy)
 *.fdb_latexmk
 *.fls
+*.html

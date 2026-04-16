@@ -1,18 +1,16 @@
-% Copyright (c) 2023 Jesse Straat
-% 
-% This software is released under the MIT License.
-% https://opensource.org/licenses/MIT
-
 %!TeX root = introduction
 
+\csname docmute\endcsname
 \makeatletter
 \def\input@path{{../}}
 \makeatother
+\input{scripts/accessibility.sty}
 \documentclass{scripts/preamble}
 
 \begin{document}
-	\chapter*{Introduction\markboth{Introduction}{}}
-	\addcontentsline{toc}{chapter}{\protect\numberline{}Introduction}		% Makes sure that the introduction has no number but is in table of contents
+	\chapter*{Introduction}
+	\addcontentsline{toc}{chapter}{Introduction}		% Makes sure that the introduction has no number but is in table of contents
+	\markboth{Introduction}{}
 	This is an introductory story.
 	%
 	\clearpage
@@ -31,7 +29,7 @@
 	{\renewcommand\tabularxcolumn[1]{m{#1}}
 	\renewcommand{\arraystretch}{1.5}
 	\begin{tabularx}{\textwidth}{ c X }
-		\(\qed\) & This symbol denotes the end of a proof.
+		\(\qed\)\index[notation]{\(\qed\)} & This symbol denotes the end of a proof.
 	\end{tabularx}}
 	%
 	\subsection*{Acknowledgements}
